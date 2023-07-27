@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+  user-service:
+    container_name: user-service
+    image: "weather_app:latest"
+    volumes:
+      - './services/user:/Users/Sutherland/Desktop/weatherproject/weather_dock'
+    ports:
+      - '9000:9000' # expose ports - HOST:CONTAINER
+
+  web-service:
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - './services/web:/Users/Sutherland/Desktop/weatherproject/weather_dock'
+    ports:
+      - '4000:4000' # expose ports - HOST:CONTAINER
+    environment:
+      - NODE_ENV=development
